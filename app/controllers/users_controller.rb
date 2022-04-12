@@ -27,9 +27,7 @@ class UsersController < ApplicationController
         User.find(params[:username]).delete
         head :no_content
     end
-    def update
-        render json:   User.find(params[user_params]).update
-    end
+   
    
     private
 

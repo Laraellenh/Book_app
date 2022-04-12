@@ -1,3 +1,3 @@
 class FavoriteBooksController < ApplicationController
-    wrap parameters format: []
+    # wrap parameters format: []
 end

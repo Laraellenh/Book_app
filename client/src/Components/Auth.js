@@ -24,16 +24,26 @@ function Auth() {
         },
         body: JSON.stringify(newUser),
       })
-        .then((r) => r.json())
-        .then(json => {
-          console.log(json)
-          if(json.errors) setErrors(Object.entries(json.errors))
+      .then(json => {
+        console.log(json)
+        if(json.errors){
+         setErrors(Object.entries(json.errors)) 
+      } else {
+        alert(`Welcome ${newUser.username}`)
+      }
+  })
+}
+
+
+
+ 
           
-      })
-      // clear the fields
+          
+      
+
      
       
-  }
+  
     return (
         <> 
         <h1>Sign UP</h1>

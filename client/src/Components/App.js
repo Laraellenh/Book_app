@@ -35,7 +35,12 @@ function App() {
 
   },[]);
 
-
+  
+  useEffect(()=> {
+    fetch('/books')
+    .then(response => response.json())
+    .then(response => console.log(response))
+  }, [])
 
   if (!isAuthenticated) return <Login error={'please login'} setIsAuthenticated={setIsAuthenticated} setUser={setUser} />;
   return (
@@ -48,7 +53,7 @@ function App() {
     <Route path="/login">
           <Login setIsAuthenticated={setIsAuthenticated} setUser={setUser}/>
     </Route>
-    <Route path="/"> <Home /></Route>
+    <Route path="/"> <Home user={user} books={books} setBooks={setBooks} /></Route>
     <Route path="/logout"></Route>
     </Switch>
    
