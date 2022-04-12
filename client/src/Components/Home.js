@@ -16,9 +16,10 @@ function Home() {
        console.log(books)
       setBooks(books)
     })
-  }, [search])
+  }, [])
   return (
     <div>Home
+        <h3> Favorite Vonnegut Titles </h3>
         <FavoritesList  books={books} setBooks={setBooks}/>
         <SearchComponent onSubmitSearch={setSearch}/>
     </div>

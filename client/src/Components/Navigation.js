@@ -19,7 +19,7 @@ function Navigation({ setIsAuthenticated, setUser, user}) {
          <div>
             <button onClick={logout}>Logout</button>
            <h1><Link to="/"> Home</Link></h1>
-           {user&&user.admin?<h1><Link to="/" >Return Home</Link></h1>:null}
+           {user&&user.admin?<h1><Link to="/home" >Return Home</Link></h1>:null}
 
          </div>
 

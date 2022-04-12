@@ -13,6 +13,7 @@ function App() {
   
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] =useState(null);
+  const [books, setBooks] = useState([]);
   useEffect(() => {
     fetch("/authorized_user")
     .then((res) => {
@@ -25,12 +26,13 @@ function App() {
         .then(()=> {
           fetch('/home')
           .then(res => res.json())
-          .then(user => {
-            console.log(user)
-            
-          });
-      })
-    }});
+        
+        })
+      }
+    });
+
+   
+
   },[]);
 
 
@@ -46,7 +48,8 @@ function App() {
     <Route path="/login">
           <Login setIsAuthenticated={setIsAuthenticated} setUser={setUser}/>
     </Route>
-    <Route path="/home"> <Home /></Route>
+    <Route path="/"> <Home /></Route>
+    <Route path="/logout"></Route>
     </Switch>
    
     </>

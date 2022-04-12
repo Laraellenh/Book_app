@@ -17,8 +17,8 @@ function Login({setUser,setIsAuthenticated}) {
             username,
             password
         }
-        setUser(user)
-        setIsAuthenticated(true)
+        setUser("")
+        setIsAuthenticated("")
         fetch(`/login`,{
           method:'POST',
           headers:{'Content-Type': 'application/json'},
@@ -28,7 +28,8 @@ function Login({setUser,setIsAuthenticated}) {
           if(res.ok){
             res.json()
             .then(user=>{
-              
+                setUser(user)
+                setIsAuthenticated(true)
             })
             
           } else {
