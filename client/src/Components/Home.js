@@ -4,7 +4,7 @@
 
 import BookContainer from "./BookContainer"
 
-function Home({handleFetchBooks}) {
+function Home() {
   
   
  
@@ -17,8 +17,8 @@ function Home({handleFetchBooks}) {
 //   this use effect is the side effect of clicking the search button so should maybe be moved to homepage
  
   return (
-    <div>Home
-        <h3> </h3>
+    <div>
+        <h3> Welcome to Your Vonnegut Planner </h3>
         <BookContainer  />
         
     </div>

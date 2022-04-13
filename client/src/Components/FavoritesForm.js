@@ -2,7 +2,10 @@ import React from 'react'
 
 function FavoritesForm() {
   return (
-    <div>FavoritesForm</div>
+    <div> 
+      <ul> Click to add your favorites here!</ul>
+        <li> list of favorites</li>
+    </div>
   )
 }
 

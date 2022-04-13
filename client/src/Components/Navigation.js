@@ -17,7 +17,7 @@ function Navigation({ setIsAuthenticated, setUser, user}) {
          <h1>Nerd Out Book List </h1>
          <div>
             <button onClick={logout}>Logout</button>
-           <h1><Link to="/"> Home</Link></h1>
+           {/* <h1><Link to="/"> Home</Link></h1> */}
            {user&&user.admin?<h1><Link to="/home" >Return Home</Link></h1>:null}
 
          </div>
