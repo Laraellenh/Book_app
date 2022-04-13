@@ -1,22 +1,29 @@
 import React, {useState} from 'react'
 
 // build out a search function for the list of all books
-function SearchComponent({onSubmitSearch}) {
+function SearchComponent({setBooks, books, }) {
+  
+const [search, setSearch] = useState([])
+const allBooks = books.map((book)=> 
+console.log(book))
+  // <li key={book.id} book={book} />
+  
 
 
-    const [search, setSearch] = useState("");
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    onSubmitSearch(search);
-  }
+  // function handleSubmit(event) {
+  //   event.preventDefault();
+  //   setSearch(search);
+  // }
 
   function handleChange(event) {
     setSearch(event.target.value);
   }
   return (
     <div>
-    <form onSubmit={handleSubmit}>
+    
+    <form 
+    // onSubmit={handleSubmit}
+    >
       <div className="form-group">
         <label htmlFor="search"> Search a Vonnegut Title:</label>
         <input

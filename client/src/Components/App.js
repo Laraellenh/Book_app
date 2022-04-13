@@ -6,6 +6,8 @@ import { Route, Switch } from "react-router-dom";
 import {useEffect, useState} from 'react'
 import Navigation from './Navigation'
 import Home from './Home'
+// import SearchComponent from './SearchComponent';
+import BookContainer from './BookContainer'
 
 
 
@@ -13,7 +15,8 @@ function App() {
   
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] =useState(null);
-  const [books, setBooks] = useState([]);
+
+
   useEffect(() => {
     fetch("/authorized_user")
     .then((res) => {
@@ -24,28 +27,24 @@ function App() {
           setUser(user);
         })
         .then(()=> {
-          fetch('/home')
+          fetch('/')
           .then(res => res.json())
         
         })
       }
     });
-
-   
-
   },[]);
 
   
-  useEffect(()=> {
-    fetch('/books')
-    .then(response => response.json())
-    .then(response => console.log(response))
-  }, [])
+  
+      
+  //  
 
   if (!isAuthenticated) return <Login error={'please login'} setIsAuthenticated={setIsAuthenticated} setUser={setUser} />;
   return (
     <>
     <Navigation setIsAuthenticated={setIsAuthenticated} setUser={setUser} />
+    <BookContainer />
     <Switch>  
     <Route path="/signup">
           <Auth/>
@@ -53,7 +52,7 @@ function App() {
     <Route path="/login">
           <Login setIsAuthenticated={setIsAuthenticated} setUser={setUser}/>
     </Route>
-    <Route path="/"> <Home user={user} books={books} setBooks={setBooks} /></Route>
+    <Route path="/"> <Home  /></Route>
     <Route path="/logout"></Route>
     </Switch>
    
