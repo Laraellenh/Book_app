@@ -1,19 +1,17 @@
 import React, {useState} from 'react'
 
 // build out a search function for the list of all books
-function SearchComponent({setBooks, books, }) {
+function SearchComponent({setBooks  }) {
   
-const [search, setSearch] = useState([])
-const allBooks = books.map((book)=> 
-console.log(book))
-  // <li key={book.id} book={book} />
+  const [search, setSearch] = useState([])
+  
   
 
 
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-  //   setSearch(search);
-  // }
+  function handleSubmit(event) {
+    event.preventDefault();
+    setSearch(search);
+  }
 
   function handleChange(event) {
     setSearch(event.target.value);
@@ -21,11 +19,11 @@ console.log(book))
   return (
     <div>
     
-    <form 
-    // onSubmit={handleSubmit}
+    {/* <form 
+    onSubmit={handleSubmit}
     >
-      <div className="form-group">
-        <label htmlFor="search"> Search a Vonnegut Title:</label>
+      <div className="form-group"> */}
+        {/* <label htmlFor="search"> Search a Vonnegut Title:</label>
         <input
           id="search"
           className="form-control"
@@ -37,7 +35,7 @@ console.log(book))
       <button type="submit" className="btn btn-success">
         Find Book Titles
       </button>
-    </form>
+    </form> */}
   </div>
   )
 }
