@@ -4,7 +4,7 @@
 
 import BookContainer from "./BookContainer"
 
-function Home() {
+function Home({user}) {
   
   
  
@@ -19,7 +19,7 @@ function Home() {
   return (
     <div>
         <h3> Welcome to Your Vonnegut Planner </h3>
-        <BookContainer  />
+        <BookContainer user={user} />
         
     </div>
   )

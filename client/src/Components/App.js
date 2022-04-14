@@ -52,7 +52,7 @@ function App() {
     <Route path="/login">
           <Login setIsAuthenticated={setIsAuthenticated} setUser={setUser}/>
     </Route>
-    <Route path="/"> <Home  /></Route>
+    <Route path="/"> <Home user={user} /></Route>
     <Route path="/logout"></Route>
     </Switch>
    

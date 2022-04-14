@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 
 function OneBook({b, handleClick}) {
     
     
-    console.log(b)
+    // console.log(b)
     // b.map(bookObj=>console.log(bookObj)) if i want to show details of each book beyond title i can map the book objects and add the details as props
     
     
