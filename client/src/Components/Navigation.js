@@ -1,22 +1,19 @@
 
 import {Link} from "react-router-dom";
 
-function Navigation({ setIsAuthenticated, setUser, user}) {
-    const logout = () => {
+function Navigation({ onLogout, user}) {
+   function handleLogout(){
         fetch('/logout',{
             method:'DELETE'
         })
-        .then(()=>{
-            setIsAuthenticated(false)
-            setUser(null)
-        })
+        .then(() => onLogout());
     }
     return (
         <> 
    
          <h1>Nerd Out Book List </h1>
          <div>
-            <button onClick={logout}>Logout</button>
+            <button onClick={handleLogout}>Logout</button>
            {/* <h1><Link to="/"> Home</Link></h1> */}
            {user&&user.admin?<h1><Link to="/home" >Return Home</Link></h1>:null}
 

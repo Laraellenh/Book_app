@@ -13,44 +13,35 @@ import BookContainer from './BookContainer'
 
 function App() {
  
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
   const [user, setUser] =useState(null);
 
-
   useEffect(() => {
-    fetch("/authorized_user")
-    .then((res) => {
-      if(res.ok) {
-        res.json()
-        .then((user) => {
-          setIsAuthenticated(true);
-          setUser(user);
-        })
-        .then(()=> {
-          fetch('/')
-          .then(res => res.json())
-        
-        })
+    fetch("/me").then((response) => {
+      if (response.ok) {
+        response.json().then((user) => setUser(user));
       }
     });
-  },[]);
+  }, []);
 
-  
-  
-      
-  //  
+  function handleLogin(user) {
+    setUser(user);
+  }
 
-  if (!isAuthenticated) return <Login error={'please login'} setIsAuthenticated={setIsAuthenticated} setUser={setUser} />;
+  function handleLogout() {
+    setUser(null);
+  }
+  
   return (
     <>
-    <Navigation setIsAuthenticated={setIsAuthenticated} setUser={setUser} />
+    <Navigation  onLogout={handleLogout} setUser={setUser} />
     <BookContainer />
     <Switch>  
     <Route path="/signup">
           <Auth/>
     </Route>
     <Route path="/login">
-          <Login setIsAuthenticated={setIsAuthenticated} setUser={setUser}/>
+          <Login onLogin={handleLogin} />
     </Route>
     <Route path="/"> <Home user={user} /></Route>
     <Route path="/logout"></Route>

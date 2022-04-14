@@ -3,16 +3,16 @@
 import React, {useState} from 'react'
 import Auth from './Auth'
 
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 
-function Login({setUser,setIsAuthenticated}) {
+function Login({ onLogin }) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState([])
     // let navigate = useHistory();
 
-    function onSubmit(e){
+    function handleSubmit(e){
         e.preventDefault()
         const user = {
             username,
@@ -24,27 +24,20 @@ function Login({setUser,setIsAuthenticated}) {
           headers:{'Content-Type': 'application/json'},
           body:JSON.stringify(user)
         })
-        .then(res => {
-          if(res.ok){
-            res.json()
-            .then(data=>{
-                setUser(data)
-                setIsAuthenticated(true)
-                // navigate("/")
-            })
+          .then((r) => {
+            if (r.ok) {
+              r.json().then((user) => onLogin(user));
+            }
+          });
+        }
             
-          } else {
-            res.json()
-            .then(json => setError(json.error))
-          }
-        })
-    }
+         
     return (
       
         <> 
         <h1>Nerd Out Book List</h1>
         <h1>Login</h1>
-        <form onSubmit={(e)=>onSubmit(e)}>
+        <form onSubmit={handleSubmit}>
         <label>
           Username
    
