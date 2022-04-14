@@ -1,12 +1,45 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 
-function OneBook({b, handleClick}) {
-    
-    
+function OneBook({b,  handleClick}) {
     // console.log(b)
-    // b.map(bookObj=>console.log(bookObj)) if i want to show details of each book beyond title i can map the book objects and add the details as props
+    const [elementOfObject, setElement] = ([])
+    // console.log(user && user.id)
+  // console.log(for of let key )
+  function loopThroughB (b){
+    for (let title in b){
+     const dataArray = Object.entries(b)
+     const title = dataArray[0]
+     console.log("title", title)
+    // console.log(title)
+    // console.log(b[title])
+   
+  
+    }
+  }
+  // loopThroughB(b)
+  // console.log (b)
+  // const [faveTitle, setFaveTitle] = useState([])
+  
+  //  turn array into object then pass in
+
+  function handleClick(title){
+   
+   
+        fetch('/favorite_books', {
+        method:"POST",
+        headers: {
+            'Content-Type':"application/json"},
+            body: JSON.stringify(title)
+           
+        })
+        .then(r=>r.json())
+        .then(data=>console.log(data))
+        // .then(data=>setFaveTitle([...faveTitle, data]))
     
+    
+  }
+  
     
 
   return (

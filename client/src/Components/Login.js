@@ -2,14 +2,15 @@
    
 import React, {useState} from 'react'
 import Auth from './Auth'
-// import { useHistory } from "react-router-dom";
+
+import { useHistory } from "react-router-dom";
 
 
 function Login({setUser,setIsAuthenticated}) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState([])
-    // let history = useHistory();
+    // let navigate = useHistory();
 
     function onSubmit(e){
         e.preventDefault()
@@ -17,8 +18,7 @@ function Login({setUser,setIsAuthenticated}) {
             username,
             password
         }
-        setUser("")
-        setIsAuthenticated("")
+      
         fetch(`/login`,{
           method:'POST',
           headers:{'Content-Type': 'application/json'},
@@ -27,9 +27,10 @@ function Login({setUser,setIsAuthenticated}) {
         .then(res => {
           if(res.ok){
             res.json()
-            .then(user=>{
-                setUser(user)
+            .then(data=>{
+                setUser(data)
                 setIsAuthenticated(true)
+                // navigate("/")
             })
             
           } else {
@@ -43,7 +44,7 @@ function Login({setUser,setIsAuthenticated}) {
         <> 
         <h1>Nerd Out Book List</h1>
         <h1>Login</h1>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={(e)=>onSubmit(e)}>
         <label>
           Username
    

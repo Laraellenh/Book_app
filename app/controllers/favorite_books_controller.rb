@@ -1,7 +1,14 @@
 class FavoriteBooksController < ApplicationController
     # wrap parameters format: []
     def create
-        render json: FavoriteBook.create!(fave_params)
+        byebug
+        favebook= Book.find_by(title: params[:title])
+        if !favebook
+            # establish the relationship/create an instance of my join model
+         newBook = Book.create!(title: params[:title], author: "Kurt Vonnegut"  )
+        newBook.favorite_books.create()
+        end
+
     end
     def show 
         render json: FavoriteBook.find_by(id: params[:id])
@@ -10,6 +17,12 @@ class FavoriteBooksController < ApplicationController
     def fave_params
         params.permit(:book_id, :user_id, :book)
     end
-
+    def only_title
+        params.permit(:title)
+    end
+    def reject
+        params.reject!(:covers, :key, :authors, :type, :description, :latest_revision, :revision, :created, :last_modified)
+    end
+   
 
 end

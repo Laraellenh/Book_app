@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import BookMapper from './BookMapper'
 
-function BookContainer({user}) {
+function BookContainer() {
     const [title, setTitle] = useState([])
-   console.log(user)
+ 
   //  function handlePopulateBooks(){
   //     if(books.length===0)
   //         fetch('/books')
@@ -31,7 +31,7 @@ function BookContainer({user}) {
     //  console.log(title)
   return (
     <div>
-        <BookMapper user={user} setTitle={setTitle} title={title}/>
+        <BookMapper  setTitle={setTitle} title={title}/>
        
     </div>
   )

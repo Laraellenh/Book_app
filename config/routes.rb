@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resources :users, only: [:create, :index]
-  resources :favorite_books, only: [:create, :index]
+  resources :favorite_books, only: [:create, :show]
   resources :authors
   # resources :books, only: [:index]
   post "/login", to: "sessions#login"
