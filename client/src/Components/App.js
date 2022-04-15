@@ -4,16 +4,16 @@ import Auth from './Auth'
 import Login from './Login'
 import { Route, Switch } from "react-router-dom";
 import {useEffect, useState} from 'react'
-import Navigation from './Navigation'
+
 import Home from './Home'
 // import SearchComponent from './SearchComponent';
 import BookContainer from './BookContainer'
 
-
+import { useHistory } from "react-router-dom";
 
 function App() {
  
-  
+  const history = useHistory()
   const [user, setUser] =useState(null);
 
   useEffect(() => {
@@ -25,26 +25,31 @@ function App() {
   }, []);
 
   function handleLogin(user) {
+    
     setUser(user);
+    history.push("/")
+    
   }
 
   function handleLogout() {
+   
     setUser(null);
+    history.push("/login")
   }
   
   return (
     <>
-    <Navigation  onLogout={handleLogout} setUser={setUser} />
+    {/* <Navigation  onLogout={handleLogout} setUser={setUser} /> */}
     <BookContainer />
     <Switch>  
-    <Route path="/signup">
+    <Route exact path="/signup">
           <Auth/>
     </Route>
-    <Route path="/login">
-          <Login onLogin={handleLogin} />
+    <Route exact path="/login">
+          <Login onLogin={handleLogin}  />
     </Route>
-    <Route path="/"> <Home user={user} /></Route>
-    <Route path="/logout"></Route>
+    <Route exact path="/"> <Home user={user} onLogout={handleLogout} setUser={setUser}/></Route>
+    <Route exact path="/logout"></Route>
     </Switch>
    
     </>

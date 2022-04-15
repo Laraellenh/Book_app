@@ -5,20 +5,20 @@ import Auth from './Auth'
 
 // import { useHistory } from "react-router-dom";
 
-
+// const history = useHistory()
 function Login({ onLogin }) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState([])
-    // let navigate = useHistory();
+    
 
     function handleSubmit(e){
         e.preventDefault()
         const user = {
-            username,
-            password
-        }
-      
+          username,
+          password
+      }
+      console.log("user", user)
         fetch(`/login`,{
           method:'POST',
           headers:{'Content-Type': 'application/json'},
@@ -27,6 +27,7 @@ function Login({ onLogin }) {
           .then((r) => {
             if (r.ok) {
               r.json().then((user) => onLogin(user));
+             
             }
           });
         }

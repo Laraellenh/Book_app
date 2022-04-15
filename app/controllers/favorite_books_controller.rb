@@ -5,7 +5,7 @@ class FavoriteBooksController < ApplicationController
         favebook= Book.find_by(title: params[:title])
         if !favebook
             # establish the relationship/create an instance of my join model
-         newBook = Book.create!(title: params[:title], author_id: 1  )
+         newBook = Book.create!(title: params[:title], author_id: 1  ).joins(:books)
         FavoriteBook.create(book: newBook)
         end
 

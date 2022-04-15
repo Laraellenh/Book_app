@@ -1,10 +1,10 @@
 
 // import FavoritesList from "./FavoritesList"
 // import SearchComponent from './SearchComponent';
-
+import Navigation from './Navigation'
 import BookContainer from "./BookContainer"
 
-function Home({user}) {
+function Home({user, onLogout, setUser}) {
   
   
  
@@ -20,7 +20,7 @@ function Home({user}) {
     <div>
         <h3> Welcome to Your Vonnegut Planner </h3>
         <BookContainer user={user} />
-        
+        <Navigation onLogout={onLogout} setUser={setUser}/>
     </div>
   )
 }

@@ -5,8 +5,8 @@ import OneBook from './OneBook'
 import FavoritesList from './FavoritesList'
 
 function BookMapper({title}) {
-
-  const bookComponentArray = title.map(b=> <OneBook key={b.id}  b={b}/>)
+//  console.log(title)
+  // const bookComponentArray = title.map(b=> <OneBook key={b.id}  b={b}/>)
    
   return (
     
@@ -14,7 +14,7 @@ function BookMapper({title}) {
     <div>
       <FavoritesList/>
       <SearchComponent  />
-      {bookComponentArray}   
+      {/* {bookComponentArray}    */}
         
     </div>
     

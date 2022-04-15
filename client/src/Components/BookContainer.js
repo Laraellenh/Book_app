@@ -17,8 +17,8 @@ function BookContainer() {
     fetch('/books')
     .then(r=>r.json())
     .then(data=>{
-      // console.log(data)
-      // console.log(data.entries)
+      console.log(data)
+      console.log(data.entries)
       
       // .map(title=>{
         // console.log(title)
