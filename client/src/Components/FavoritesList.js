@@ -27,7 +27,7 @@ function FavoritesList({books, setBooks}) {
     // const allBooks = ...books, plus new object from the form, build out the form where they can select a book from the api and add to our db locally so show on their favorites list
 
   return (
-    <div>FavoritesList
+    <div>
         <FavoritesForm />
     </div>
   )

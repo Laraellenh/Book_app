@@ -46,3 +46,8 @@
   font-family: oswald;
   font-size: 20px;
 }
+
+.container {
+  flex-wrap: nowrap;
+  justify-content:  space-evenly;
+}

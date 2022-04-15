@@ -1,10 +1,10 @@
 
 // import FavoritesList from "./FavoritesList"
 // import SearchComponent from './SearchComponent';
-
+import Navigation from './Navigation'
 import BookContainer from "./BookContainer"
 
-function Home({handleFetchBooks}) {
+function Home({user, onLogout, setUser}) {
   
   
  
@@ -17,10 +17,11 @@ function Home({handleFetchBooks}) {
 //   this use effect is the side effect of clicking the search button so should maybe be moved to homepage
  
   return (
-    <div>Home
-        <h3> </h3>
-        <BookContainer  />
-        
+    <div>
+        <Navigation onLogout={onLogout} setUser={setUser}/>
+        <h3> Welcome to Your Vonnegut Planner </h3>
+        <BookContainer user={user} />
+       
     </div>
   )
 }

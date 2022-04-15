@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { useHistory } from "react-router-dom";
 
 function Auth() {
     const [username, setUsername] = useState('')
@@ -8,15 +9,15 @@ function Auth() {
     const handleEmail = (e) => setEmail(e.target.value)
     const handlePassword = (e) => setPassword(e.target.value)
     const [errors, setErrors] = useState([])
-   
-    
+
+    const nav = useHistory()
     const handleSubmit = (e) => {
       e.preventDefault();
     
       const newUser = { username, email, password}
-        setEmail("")
-        setPassword("")
-        setUsername("")
+        // setEmail("")
+        // setPassword("")
+        // setUsername("")
       fetch(`/signup`, {
         method: "POST",
         headers: {
@@ -30,19 +31,11 @@ function Auth() {
          setErrors(Object.entries(json.errors)) 
       } else {
         alert(`Welcome ${newUser.username}`)
+        // nav.push("/")
       }
   })
 }
 
-
-
- 
-          
-          
-      
-
-     
-      
   
     return (
         <> 

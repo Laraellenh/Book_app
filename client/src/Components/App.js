@@ -4,51 +4,62 @@ import Auth from './Auth'
 import Login from './Login'
 import { Route, Switch } from "react-router-dom";
 import {useEffect, useState} from 'react'
-import Navigation from './Navigation'
+
 import Home from './Home'
 // import SearchComponent from './SearchComponent';
 import BookContainer from './BookContainer'
 
-
+import { useHistory } from "react-router-dom";
 
 function App() {
  
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  let history = useHistory()
   const [user, setUser] =useState(null);
 
-
   useEffect(() => {
-    fetch("/authorized_user")
-    .then((res) => {
-      if(res.ok) {
-        res.json()
-        .then((user) => {
-          setIsAuthenticated(true);
-          setUser(user);
-        })
-        .then(()=> {
-          fetch('/')
-          .then(res => res.json())
-        
-        })
+    fetch("/me").then((response) => {
+      if (response.ok) {
+        response.json().then((user) => setUser(user));
       }
     });
-  },[]);
+  }, []);
 
-  if (!isAuthenticated) return <Login error={'please login'} setIsAuthenticated={setIsAuthenticated} setUser={setUser} />;
+  function handleLogin(user) {
+    
+    setUser(user);
+    history.push("/")
+    
+  }
+
+  function handleLogOutClick() {
+    fetch("/logout", {
+      method: "DELETE",
+    }).then((r) => {
+      if (r.ok) {
+        setUser(null);
+      }
+    });
+    history.push("/login");
+  }
+  // function handleLogout() {
+   
+  //   setUser(null);
+  //   // history.push("/login")
+  // }
+  
   return (
     <>
-    <Navigation setIsAuthenticated={setIsAuthenticated} setUser={setUser} />
-    <BookContainer />
+    {/* <Navigation  onLogout={handleLogout} setUser={setUser} /> */}
+    {/* <BookContainer /> */}
     <Switch>  
-    <Route path="/signup">
+    <Route exact path="/signup">
           <Auth/>
     </Route>
-    <Route path="/login">
-          <Login setIsAuthenticated={setIsAuthenticated} setUser={setUser}/>
+    <Route exact path="/login">
+          <Login onLogin={handleLogin}  />
     </Route>
-    <Route path="/"> <Home  /></Route>
-    <Route path="/logout"></Route>
+    <Route exact path="/"> <Home user={user} handleLogOutClick={handleLogOutClick} setUser={setUser}/></Route>
+    <Route exact path="/logout"></Route>
     </Switch>
    
     </>

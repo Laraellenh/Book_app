@@ -2,48 +2,43 @@
    
 import React, {useState} from 'react'
 import Auth from './Auth'
+
 // import { useHistory } from "react-router-dom";
 
-
-function Login({setUser,setIsAuthenticated}) {
+// const history = useHistory()
+function Login({ onLogin }) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState([])
-    // let history = useHistory();
+    
 
-    function onSubmit(e){
+    function handleSubmit(e){
         e.preventDefault()
         const user = {
-            username,
-            password
-        }
-        setUser("")
-        setIsAuthenticated("")
+          username,
+          password
+      }
+      console.log("user", user)
         fetch(`/login`,{
           method:'POST',
           headers:{'Content-Type': 'application/json'},
           body:JSON.stringify(user)
         })
-        .then(res => {
-          if(res.ok){
-            res.json()
-            .then(user=>{
-                setUser(user)
-                setIsAuthenticated(true)
-            })
+          .then((r) => {
+            if (r.ok) {
+              r.json().then((user) => onLogin(user));
+             
+            }
+          });
+        }
             
-          } else {
-            res.json()
-            .then(json => setError(json.error))
-          }
-        })
-    }
+         
     return (
       
         <> 
         <h1>Nerd Out Book List</h1>
         <h1>Login</h1>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit}>
         <label>
           Username
    

@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   
   resources :users, only: [:create, :index]
-  resources :favorite_books
+  resources :favorite_books, only: [:create, :show]
   resources :authors
   # resources :books, only: [:index]
   post "/login", to: "sessions#login"
-  get '/authorized_user', to: "users#show"
+  get '/me', to: "users#show"
   delete '/logout', to: 'sessions#destroy'
   post "/signup", to: "users#create"
   get '/books', to: "books#get_works"

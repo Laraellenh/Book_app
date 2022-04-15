@@ -1,20 +1,16 @@
 import React, {useState} from 'react'
 
 // build out a search function for the list of all books
-function SearchComponent({setBooks  }) {
+function SearchComponent({setBookTitle  }) {
   
   const [search, setSearch] = useState([])
-  
-  
-
-
   function handleSubmit(event) {
     event.preventDefault();
     setSearch(search);
   }
 
   function handleChange(event) {
-    setSearch(event.target.value);
+    setBookTitle(event.target.value);
   }
   return (
     <div>
