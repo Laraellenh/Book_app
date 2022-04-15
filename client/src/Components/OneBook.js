@@ -29,7 +29,7 @@ function OneBook({b,  handleClick}) {
 
 
         fetch('/favorite_books', {
-          method: 'POST', // or 'PUT'
+          method: 'POST', 
           headers: {
             'Content-Type': 'application/json',
           },
@@ -37,10 +37,11 @@ function OneBook({b,  handleClick}) {
            
         })
         .then(r=>r.json())
-        // .then(data=>console.log(data))
-        .then(data=>setFaveTitle([...faveTitle, data]))
-    
-    
+        .then(data=>{
+          console.log(data)
+          setFaveTitle([...faveTitle, data])
+        })
+
   }
   
     

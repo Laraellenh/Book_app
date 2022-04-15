@@ -1,15 +1,25 @@
 class FavoriteBooksController < ApplicationController
     # wrap parameters format: []
     def create
+    
+        book= Book.find_by(title: params[:title])
         byebug
-        favebook= Book.find_by(title: params[:title])
-        if !favebook
+
+        if !book
             # establish the relationship/create an instance of my join model
             
-         newBook = Book.create!(title: params[:title], author_id: 1  )
-        FavoriteBook.create(book: newBook)
+            newBook = Book.create!(title: params[:title], author_id: 1  )
+        
+           return render json: FavoriteBook.create(user_id: session[:user_id], book_id: newBook.id)
         end
+        favebook = FavoriteBook.all.where({user_id: session[:user_id], book_id: book.id})
+        byebug
+        if !favebook
+            # check if user already has as favorite
 
+            return render json: FavoriteBook.create(user_id: session[:user_id], book_id: book.id)
+        end
+            render json: favebook[0]
     end
     def show 
         render json: FavoriteBook.find_by(id: params[:id])
