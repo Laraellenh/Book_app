@@ -31,7 +31,7 @@ function Auth() {
          setErrors(Object.entries(json.errors)) 
       } else {
         alert(`Welcome ${newUser.username}`)
-        // nav.push("/")
+        nav.push("/")
       }
   })
 }

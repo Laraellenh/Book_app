@@ -53,7 +53,7 @@ function Login({ onLogin }) {
         <input type="submit" value="Login!" />
       </form>
       {error?<div>{error}</div>:null}
-      <Auth />
+      {/* <Auth /> */}
         </>
     )
 }
