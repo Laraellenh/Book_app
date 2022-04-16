@@ -1,11 +1,9 @@
 
    
 import React, {useState} from 'react'
-import Auth from './Auth'
+// import Auth from './Auth'
 
-// import { useHistory } from "react-router-dom";
 
-// const history = useHistory()
 function Login({ onLogin }) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')

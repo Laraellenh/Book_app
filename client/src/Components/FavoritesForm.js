@@ -1,12 +1,12 @@
-import React from 'react'
+// import React from 'react'
 
-function FavoritesForm() {
-  return (
-    <div> 
-      <ul> Click to add your favorites here!</ul>
+// function FavoritesForm() {
+//   return (
+//     <div> 
+//       <ul> Click to add your favorites here!</ul>
      
-    </div>
-  )
-}
+//     </div>
+//   )
+// }
 
-export default FavoritesForm
+// export default FavoritesForm

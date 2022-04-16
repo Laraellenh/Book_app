@@ -7,7 +7,7 @@ import {useEffect, useState} from 'react'
 
 import Home from './Home'
 // import SearchComponent from './SearchComponent';
-import BookContainer from './BookContainer'
+
 
 import { useHistory } from "react-router-dom";
 
@@ -24,6 +24,7 @@ function App() {
     });
   }, []);
 
+
   function handleLogin(user) {
     
     setUser(user);
@@ -31,16 +32,24 @@ function App() {
     
   }
 
-  function handleLogout() {
-   
-    setUser(null);
-    history.push("/login")
+  function handleLogOutClick(e) {
+    console.log("click", e)
+    
+    fetch("/logout", {
+      method: "DELETE",
+    }).then((r) => {
+      if (r.ok) {
+        setUser(null);
+        history.push("/login");
+      }
+    });
+    
   }
   
   return (
     <>
     {/* <Navigation  onLogout={handleLogout} setUser={setUser} /> */}
-    <BookContainer />
+    {/* <BookContainer /> */}
     <Switch>  
     <Route exact path="/signup">
           <Auth/>
@@ -48,7 +57,7 @@ function App() {
     <Route exact path="/login">
           <Login onLogin={handleLogin}  />
     </Route>
-    <Route exact path="/"> <Home user={user} onLogout={handleLogout} setUser={setUser}/></Route>
+    <Route exact path="/"> <Home user={user} handleLogOutClick={handleLogOutClick} setUser={setUser}/></Route>
     <Route exact path="/logout"></Route>
     </Switch>
    

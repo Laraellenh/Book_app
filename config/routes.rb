@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
   
-  resources :users, only: [:create, :index]
-  resources :favorite_books, only: [:create, :show]
+  resources :users
+  resources :favorite_books, only: [:create, :show, :index]
   resources :authors
-  # resources :books, only: [:index]
+  # resources :books, only: [:index, :get_works]
   post "/login", to: "sessions#login"
   get '/me', to: "users#show"
   delete '/logout', to: 'sessions#destroy'
   post "/signup", to: "users#create"
   get '/books', to: "books#get_works"
+  # get '/books', to: "books#index"
+  # get '/books', to: "books#show"
   # get "/home", to:
   # get '/cats', to: "books#cats_cradle"
   # get '/welcome', to: "books#welcome_to"

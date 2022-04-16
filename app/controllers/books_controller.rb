@@ -5,6 +5,10 @@ class BooksController < ApplicationController
     # def index 
     #     render json: Book.all
     # end
+    # def show
+    #     Book.find_by(title: params[:title])
+    # end
+
     def cats_cradle
         url = "https://openlibrary.org/works/OL98454W.json"
        
